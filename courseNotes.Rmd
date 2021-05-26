@@ -1,0 +1,173 @@
+IBM Machine Learning Course Notes
+=================================
+
+NOTE: I need to fix that issue that comes up everytime I load an `*.R` or an `*.Rmd` script, and presumably any python scripts too.
+
+Module 1
+--------
+
+### Intro to ML ###
+
+Use ML to:
+
+- learn, from medical data, whether a tumor cell is benign or cancerous
+- learn, how banks use financial data to decide whether a loan ought to be approved or not
+
+We will hold your hand throughout this entire process. If you want to get a job in ML, you will absolutely need substantially more 
+experience than we can offer you in this course!
+
+So how is this simple example different from polygenic risk scoring and calculation?
+  - is it that different?
+
+So using algorithms, we can train the computer to recognize relevant factors, to be able to distinguish
+important differences in multiple data points.
+
+So... with PRS... we use the results of GWAS, to calculate the genetic effect for each SNP, and can then build
+a model which will predict an individuals genetic predisposition to developing ADHD.
+
+Conceptually it seems like the same basic idea.
+
+- input data (genotypes, and phenotypes)
+  - use a regression equation to calculate the risk/effect associated with individual variant
+  - apply that risk to an independent sample
+  - predict the risk or likelihood of an individual developing that disorder - or predict their genetic
+    predisposition
+  - PRS goes one step further I guess, and can use the calculated risk for a whole sample to estiamte the
+    varaince explained in a target variable - either the same phenotype, or another, to examine whether the
+    PRS is statistically associated and to what extent PRS can predict or explain another phenotype
+
+We can use machine learning, to
+
+So...
+
+The key is that regression is only one of (the comparitively simpler) methods of building a model to predict
+some outcome.
+
+Could I predict an individuals likelihood of being diagnosed with ADHD, using environmental factors?
+Could I predict an individuals likelihood of being diagnosed with ADHD, using genetic factors?
+
+Could I compare these?
+
+### Python for ML ###
+
+Packages/libraries for ML in python:
+
+- Pandas
+- Numpy
+- Scipy
+- Scikit learn
+- MatPlotlib
+
+Using libraries, esp Scikit learn, can dramatically reduce the challenge and coding required to perform
+machine learning (almost a shame, really).
+
+Supervised:
+
+- a named and labelled dataset - we can perform regressions, etc. to calculate betas which
+  predict outcomes 
+
+Unsupervised:
+
+- unlabelled data - more sophisticated algorithms
+- mining for observations and insights that are invisible to the human eye (eigenvectors? Decomposition?)
+
+most common unsupervised methods:
+
+- dimension reduction (eignevectors)
+- density estimation
+- market basket analysis
+- clustering
+  - discovering structure
+  - summarisation
+  - anomaly detection
+
+Regression
+----------
+
+I will be interesting to see how much of this I understand, and if/where there are any gaps in my knowledge...
+
+So, it sounds like we'll be estimating an effect on the dependent variable.
+
+It's machine learning - it's all just terminology.
+
+Yep, regression builds a model which can use X, to predict Y. That's all there is to it.
+
+Just using data science/industry language to describe the concepts I already know. Love it.
+
+Linear Regression
+-----------------
+
+Apparently don't need 'linear algebra' - interesting.
+
+Nice introduction, but a few helpful explanations.
+
+    y = intercept + slope(x)
+
+The intercept and slope are known as the 'parameters' and/or the 'coefficients' of the model. Very helpful and clear information.
+
+To find the line of best fit we have find the `MSE`, the Mean Squared Error (is this basically the same as ordinary least squares?)
+
+So, after we've estimated our parameters, we can now estimate the value of a new depedent variable, based on its value of X.
+
+NOTE: this will, as in the explanation of error terms, return a value with an error margin based on the error in the dataset.
+
+In machine learning, no doubt this is another reason why huge datasets are useful. In a lot of scientific research you're interested in whether an effect exists and/or is statistically significant. In data science you're interested in producing predictions as accurately as possible - so the more correlates and error you can account for, and the more data you have, the better and more accurate your prediciton will be
+- which is exactly the same as PRS!
+
+So it's worth noting that I already understand the 'basics' of machine learning. I understand the concept of prediction, using data, and thinking about it, its becoming clear why massive data is so crucial to machine learning, compared to traditional scientific research and in particular clinical research and statistics.
+
+Also worth noting that I'm really only familiar with the *most basic* machine learning methods - if you count multivariate regression and structural equation models as basic.
+
+Model Evaluation
+----------------
+
+So this is about estimation of error and accuracy of our data and models.
+
+So, you can use linear models to get results, which can be measured for accuracy in the same way you measure the accuracy of your decision trees. So you can... *brain hurting*...
+
+You can use layers of regression prediction estimates in decision trees? And you can use similar principles as in decision trees to optimise the order and sequence of predictions from regressions, to create an algorithm that predicts outcomes, based on a given set of inputs?
+
+### train and test set ###
+
+training accuracy: the accuracy of the model is predicting values from a dataset that it has been trained on
+  - interpret with caution, over-fitting the model can cause it to be to specific to the training set, and not generalizable
+
+out-of-sample accuracy: the accuracy of the model in predicting values from a dataset that it has *NOT* been trained on
+
+### Train test split ###
+
+more accurate out-of-sample accuracy
+
+
+Ah I see. In the first case, the test set *is* a portion of the set that was used for training - i.e. it is a part of the training sample.
+
+In test/train split - the test set is *absent* from the training data set.
+
+Oh man, who would test their model on data they used to build the model? When could that possibly be a good idea?
+
+### K fold cross validation ###
+
+Even better?
+
+Ah I see... so is it a kind of bootstrapping/resampling kind of technique?
+
+It must also increase power, because it allows you to make use of *all* the data, independently, in both the training and the test data set.
+
+
+
+---
+
+Other stuff to note:
+
+- I don't really want to use Jupyter labs and notebooks. I want to code in the terminal, or in vim. I'd rather have a job where I was working through terminal and command line interfaces, rather than notebooks and browsers
+
+
+
+
+
+
+
+
+
+
+
