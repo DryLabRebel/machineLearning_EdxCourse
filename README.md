@@ -48,6 +48,7 @@ Syllabus
 
 ---
 
+Course labs from Jupyter notebooks have been saved as gists.
 
 
 
