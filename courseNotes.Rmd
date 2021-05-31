@@ -81,8 +81,10 @@ most common unsupervised methods:
   - summarisation
   - anomaly detection
 
-Regression
-----------
+Module 2
+--------
+
+### Regression ###
 
 I will be interesting to see how much of this I understand, and if/where there are any gaps in my knowledge...
 
@@ -94,8 +96,7 @@ Yep, regression builds a model which can use X, to predict Y. That's all there i
 
 Just using data science/industry language to describe the concepts I already know. Love it.
 
-Linear Regression
------------------
+### Linear Regression ###
 
 Apparently don't need 'linear algebra' - interesting.
 
@@ -118,14 +119,15 @@ So it's worth noting that I already understand the 'basics' of machine learning.
 
 Also worth noting that I'm really only familiar with the *most basic* machine learning methods - if you count multivariate regression and structural equation models as basic.
 
-Model Evaluation
-----------------
+### Model Evaluation ###
 
 So this is about estimation of error and accuracy of our data and models.
 
 So, you can use linear models to get results, which can be measured for accuracy in the same way you measure the accuracy of your decision trees. So you can... *brain hurting*...
 
-You can use layers of regression prediction estimates in decision trees? And you can use similar principles as in decision trees to optimise the order and sequence of predictions from regressions, to create an algorithm that predicts outcomes, based on a given set of inputs?
+You can use layers of regression prediction estimates in decision trees? And you can use similar principles as in decision trees to optimise the order and sequence of predictions from regressions, to create an algorithm that predicts outcomes, based on a given set of inputs? - Ah - 'accuracy' - that's what I'm talking about here. The accuracy of the model, more or less.
+
+However, the outputs of regression models could still be used to make decisions in a decision tree like structure right?
 
 ### train and test set ###
 
@@ -154,13 +156,206 @@ Ah I see... so is it a kind of bootstrapping/resampling kind of technique?
 It must also increase power, because it allows you to make use of *all* the data, independently, in both the training and the test data set.
 
 
+### Accuracy metrics ###
+
+R^2 ... so the correlation - or well, the covariance.
+
+### Multiple Linear Regression ###
+
+Theta = parameters = weight vector
+
+We can represent multiple variables in a vector set.
+
+The theta set, and the feature set.
+
+X is the feature set, and is the transpose of Theta.
+
+OK cool, so Theta0 is the intercept, so X[1] == 1. This ensures it always returns the value of theta0.
+
+So the regression line in multiple regression is called the 'hyperplane'...
+
+Looking again to reduce the MSE ∑(Y - muY)/n
+
+OLS and/or Optimization (maximum likelihood?)
+
+OLS is apparently really slow for N > 10k
+
+Too many variables can lead to overfitting.
+
+### Non-linear regression ###
+
+There are infinitely many variations of polynomial regression.
+
+No doubt you have to be careful to select the model that best fits the data in a way that isn't just cherry picking the data to fit your biases.
+
+Polynomial can be transformed into a linear regression, and therefore, linear regression principles can be applied to the dataset.
+
+Polynomial is a special case of multiple regression, and it is *not* the same as non-linear regression.
+
+OK cool, non-linear functions are non-linear functions with respect to theta, *not x*.
+
+It's really just an extention of the idea that when the data is more systematic, or has some clear and/or simple predictable pattern, it's easier to work with.
+
+Same thing in programming I guess, when you have repeatability, it can be simplified in a loop or other function.
+
+How to determine non-linearity?
+
+- visually examining all independent variables against the dependent variable
+- calculate the correlation
+
+lol. There's a lot of stuff not in the scope of this course.
+- I wonder if any of my stats text books have information on how to transform, or fit polynomials to the data
+
+I should be taking note of what's not covered in the couse, so I can explore the topics further.
+
+Module 3
+--------
+
+### Classification ###
+
+Categorising unknown items into a discrete set of classes. I suppose they'll clarify further in the next video?
+
+Just more modelling of independent variable onto a set of categorical, or binary, dependent variables.
+
+Classification algorithms:
+
+- Decision trees
+- Naive Bayes
+- Linear Discriminant analysis
+- k-nearest neighbour
+- Logistic regression
+- Neural networks
+- Support Vector Machines
+
+### k-nearest neighbours ###
+
+So, it's a multivariate regression, which attempts to classify a data point by taking the average of its nearest neighbours. Simple and interesting.
+
+So it's based on the assumption that data points that are closer to each other are more similar - this is an assumption right?
+
+Calculating the similarity of datapoints can be done using 'euclidean distance'.
+
+Oh, ok, so you actually calculate the distance of 'k' (the unknown parameter) to *all* data points in the dataset (again, more samples, more accuracy).
+
+Find those point nearest, predict the parameter value of the unknown data point using the most popular response from the nearest neighbours.
+
+So no doubt this is quite sensitive to the number neighbours you decide to include as 'nearest', and probably requires some finese as to how to select the appropriate number of neighbours?
+
+So, we need to:
+
+1. Select the correct 'K'
+2. Calculate the similarity between each neighbour
+
+We use 'minkowski distance' to calculate the distance between data points, which gives us the euclidean distance.
+
+OK, so not as familiar now, but still doable. Excited to learn... no really!
+
+Dis(x1, x2) = √ ∑ (x1 - x2)^2
+
+So by squaring, and taking the square root, you always return a positive value.
+
+It's basic linear algebra, 'euclidean distance' - ah I see now.
+
+How do we choose the right 'k' (the number of nearest neighbours).
+
+Not enough - reduces accuracy, highly error prone, overly complicated - prone to overfitting
+
+Hi value - overly generalised
+
+How to find the best value for 'k'?
+
+By calculating the accuracy of the data/model
+
+- reserve a subset of test data to calculate accuracy
+
+k-nearest neighbours can predict values on continuous data also, by simply calculating the mean or median of a set of k values (mean or median, how to decide?)
+
+### Evaluation metrics in classification ###
+
+Eval metrics calculate classification accuracy
+
+pass test set to model, find predicted models. But how accurate?
+
+We compare value in test set, to the predicted values. 
+
+Different model evaluation metrics here are three examples:
+
+- Jaccard index
+- F1-score
+- Log Loss
+
+#### Jaccard index  ####
+
+- the size of the 'intersection' of predicted vs test values, divided by the union of the set of predicted and set of test values.
+
+So for example, if you had 10 points in each set, with 8 of them overlapping. The accuracy would be determined by:
+
+8/10+(10-8) = 0.66
+
+#### F1 score ####
+
+A confusion matrix, which is identical to a power/significant ratio set. 
+
+- Top left is a true positive
+- Bottom right is a true negative
+- Top right is a false negative
+- Bottom left is a false positive
+
+Called it.
+
+So, the precision is the proportion of true positives to the total number of predicted positives (TP+FP).
+
+So, the recall is the proportion of true positives to the total number of true values (TP+FN).
+
+So, we can calculate the Precision and Recall for both true and false classifiiers.
+
+We can then calculate the F1 score for both, based on the precision and recall values.
+
+    Precision: TP/(TP+FP)
+    Recall:    TP/(TP+FN)
+    F1:        2*(prc*rec)/(prc+rec)
+
+Note: you can have a low precision, and a high recall (or vice versa), and still obtain a reasonably good F1 score, so I suspect this value must be interpreted with caution.
+
+### Log Loss ###
+
+When the predicted value is a probability estimate of obtaining a given class label (discrete outcome).
+
+In logistic regression, the output can be the probability of 'customer churn', or the probability of success vs failure, or whatever
+
+Log loss is the performance of a classifiers ability to confidently predict the correct output.
+
+    (y*log(y) + (1-y)*log(1-y))
+
+We calculate log loss for each independent prediction, then take the average of the sum total of log loss estimates. The higher the 'log loss', the poorer the performance of the model.
+
+The lower the log loss, the better the accuracy of the model.
+
+
+
+
+
+
 
 ---
 
-Other stuff to note:
+### Other stuff to note ###
 
 - I don't really want to use Jupyter labs and notebooks. I want to code in the terminal, or in vim. I'd rather have a job where I was working through terminal and command line interfaces, rather than notebooks and browsers
 
+### Stuff to follow up on ###
+
+Euclidean distance (k-nearest neighbour)
+
+### Classification algorithms ###
+
+- Decision trees
+- Naive Bayes
+- Linear Discriminant analysis
+- k-nearest neighbour
+- Logistic regression
+- Neural networks
+- Support Vector Machines
 
 
 
