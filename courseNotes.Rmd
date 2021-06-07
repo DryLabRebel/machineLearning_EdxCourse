@@ -227,6 +227,8 @@ Classification algorithms:
 - Neural networks
 - Support Vector Machines
 
+---
+
 ### k-nearest neighbours ###
 
 So, it's a multivariate regression, which attempts to classify a data point by taking the average of its nearest neighbours. Simple and interesting.
@@ -269,6 +271,8 @@ By calculating the accuracy of the data/model
 - reserve a subset of test data to calculate accuracy
 
 k-nearest neighbours can predict values on continuous data also, by simply calculating the mean or median of a set of k values (mean or median, how to decide?)
+
+---
 
 ### Evaluation metrics in classification ###
 
@@ -317,7 +321,7 @@ We can then calculate the F1 score for both, based on the precision and recall v
 
 Note: you can have a low precision, and a high recall (or vice versa), and still obtain a reasonably good F1 score, so I suspect this value must be interpreted with caution.
 
-### Log Loss ###
+#### Log Loss ####
 
 When the predicted value is a probability estimate of obtaining a given class label (discrete outcome).
 
@@ -331,11 +335,117 @@ We calculate log loss for each independent prediction, then take the average of 
 
 The lower the log loss, the better the accuracy of the model.
 
+---
+
+### Decision Trees ###
+
+A decision algorithm, which makes decisions for a given data point, based on its characteristics determined by other (significantly relevant) characteristics.
+
+Building decision trees: Recursive partitioning to classify data.
+
+#### example ####
+
+- the sex attribute has a stronger relationship (correlation) with the outcome (drug selection)
+  - In data science terms - it is more *pure*, *significant* or *predictive* than cholesterol
+
+In other words, sex has a stronger effect on drug selection, than cholesterol.
+
+However, after sex, cholesterol is then able to further split males into each drug category completely
+
+thus, by partitioning by sex, and then cholesterol, we can confidently predict the appropriate drug type for males.
+
+---
+
+So, decision trees are all about:
+
+> Using recursive parititioning to split the data in a way that minimized the 'impurity' at each step
+
+What amazes me is that changing the order of the covariates in the tree changes the outcome.
+
+Like - using sex as the first node is *better* than using cholesterol as the first node, even if you introduce sex afterwards.
+
+Interesting.
+
+#### Entropy ####
+
+Entropy is the amount of randomness in a given node. The best decision trees minimize the entropy of each node.
+
+Sounds like a computationally intensive process, iterating through combinations of trees to find the one that minimises the entropy of each node.
+
+    Entropy = - p(A)log(p(A)) - p(B)log(p(B))
+
+Where A and B, are the proportions or probabilities of each categorical outcome for a given node.
+
+Information gain is the Entropy of the tree before the split (partition based on some covariate) minus the *weighted* entropy of the tree after the split.
+
+So, basically if it's negative then it's a bad split, and if it's positive it's a good split
+
+And the information gain that is highest between two different splits, is the better split for that dataset.
+
+Ah yeah, OK, so 'weighted' means that each branch in the node, is weighted the proportion of data points which are on that branch (so, for example, the proportion of females multiplied by the entropy score for females plus the proportion of males multiplied by the entropy score for males).
+
+No doubt there's a way to automate this process, and computationally calculate the best tree design, without having to do everything manually.
+
+Oh man. I *really* need to do some projects on my own. Seriously.
+
+---
+
+### Logistic Regression ###
 
 
+What is log regress?
+
+What is it for?
+
+Classifying records of a data set.
+
+When do we use it?
+
+Binary data
+
+When you need the probability of your prediction.
+
+When you need to understand the impact of a feature.
+
+OK, so can I summarise situtations where I need a decision tree, linear, or logistic regression?
+- I think I need to practise with them some more
+
+### Linear vs Logistic Regression ###
+
+The sigmoid function - key to logistic regression.
+
+Wow this is intense.
+
+So sigmoid uses the same symbol as standard deviation. But it's not standard deviation?
 
 
+So linear regression is used to predict a continuous variable.
 
+Decision trees attempt to predict discreet outcomes by discovering the tree structure which maximises the information gain.
+
+Logistic regression attempts to calculate the probability of an outcome, based on the input variables.
+
+Still not 100% clear on when you want to use decision trees, and when you want to use logistic regression.
+
+Use decision trees, when you want to assign categorical variables to a class based on input.
+
+Use logistic regression when you want to predict the probability of a given *outcome* occurring, given a set of inputs.
+
+Maybe some real world examples will help to clarify.
+
+So we're up 3 out 20+ Machine learning methods... heavy.
+
+    https://blog.bigml.com/2016/09/28/logistic-regression-versus-decision-trees/
+
+Right, should've been obvious. so applying either to a categorical outcome will successfully produce a model.
+
+The question is when is one more *appropriate* than the other...
+
+> They differ in the way they produce *decision boundaries*.
+
+OK, one obvious difference... Is the bisection of the data points a relatively *linear boundary*? If not logistic regression will under perform.
+
+If the boundary is clearly linear, then decision trees risk overfitting the data
 
 ---
 
