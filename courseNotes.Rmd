@@ -514,6 +514,13 @@ Create training and test datasets.
 > The version of Logistic Regression in Scikit-learn, support regularization. Regularization is a technique used to solve the overfitting problem of machine learning models. C parameter indicates inverse of regularization strength which must be a positive float. Smaller values specify stronger regularization. Now let's fit our model with train set:
 
 
+    Precision: TP/(TP+FP)
+    Recall:    TP/(TP+FN)
+    F1:        2*(prc*rec)/(prc+rec)
+
+### Support Vector Machines ###
+
+
 
 
 ---
@@ -527,6 +534,8 @@ Create training and test datasets.
 Euclidean distance (k-nearest neighbour)
 
 Logistic regression - training, minimizing the cost function, gradient descent
+
+    https://developers.google.com/machine-learning/crash-course/ - another potentially good resource
 
 ### Classification algorithms ###
 
