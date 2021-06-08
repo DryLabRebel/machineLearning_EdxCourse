@@ -418,7 +418,6 @@ Wow this is intense.
 
 So sigmoid uses the same symbol as standard deviation. But it's not standard deviation?
 
-
 So linear regression is used to predict a continuous variable.
 
 Decision trees attempt to predict discreet outcomes by discovering the tree structure which maximises the information gain.
@@ -447,6 +446,76 @@ OK, one obvious difference... Is the bisection of the data points a relatively *
 
 If the boundary is clearly linear, then decision trees risk overfitting the data
 
+### Training Logistic Regression ###
+
+Change the parameters - to optimise the accuracy of the model
+
+Formulate the cost function
+
+Yep, I really need a notepad to write down these equations.
+
+cost function = the Mean Squared Error
+
+    cost(ˆy, y) = 1/2 (sigmoid(Ø X) - y)^2
+
+    j(Ø) = 1/m ∑ cost(ˆy, y)
+
+How do we find the best parameters for our model?
+- by minimizing the cost function
+
+How do minimize the cost function?
+- By using a minimization approach
+  - Gradient descent, for example
+
+Definitely look at this in more detail.
+
+> In order to estimate the class of a data point, we need some sort of guidance on what would be the most probable class for that data point. For this, we use Logistic Regression.
+
+> Logistic Regression is a variation of Linear Regression, useful when the observed dependent variable, y, is categorical. It produces a formula that predicts the probability of the class label as a function of the independent variables.
+
+Logistic regression fits an S shaped curve (interesting). I actually haven't really spent much time on logistic regression. I need to change this.
+
+Logistic regression calculates the probability of a 'class' (a discrete outcome), given some independent variables.
+
+P(Y = 1| X) = sigmoid(transpose(Ø) X)
+
+e^(ØX)/1 + e^(ØX)
+
+So, as e^(ØX) increases, sigmiod approaches 1. So the larger the sigmoid value, the higher the probability. CoOl. *But - if I understand this correctly, can never actually be exactly 1, unless the result of the sigmoid function approaches infinity! (What actually would happen if sigmoid is infinity? What's inf/inf? Ah OK, so it gets weird. BUT - as sigmoid gets infinitely large (but is still some finite value) it will never be exactly one, but will eventually as close as practicable as to make no difference in the context of most statistical analysis*
+
+Man, I feel like I've never learned about logistic regression before? Is it covered in Bulmer stats? I should check it out (in fact I should probably read that book again!)
+
+Surprisingly more complicated than linear regression.
+
+Note: In my Sleep study, I have noticed that the binary traits (like Insomnia), were generally more powered - I think snoring was also a binary trait.
+
+[//]: # ( Is there something about the logistic regression which maybe more prone to bias? Or to say it another way... Is there cause to doubt my PRS results? I do wonder! )
+
+Packages I'll be using for Machine Learning:
+
+    import pandas as pd
+    import pylab as pl
+    import numpy as np
+    import scipy.optimize as opt
+    from sklearn import preprocessing
+    %matplotlib inline
+    import matplotlib.pyplot as plt
+
+So we import our dataset.
+Select variables.
+Define X and Y.
+Transform if necessary.
+Create training and test datasets.
+
+*Very useful information:*
+
+> Let's build our model using LogisticRegression from the Scikit-learn package. This function implements logistic regression and can use different numerical optimizers to find parameters, including ‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’ solvers. You can find extensive information about the pros and cons of these optimizers if you search it in the internet.
+
+> The version of Logistic Regression in Scikit-learn, support regularization. Regularization is a technique used to solve the overfitting problem of machine learning models. C parameter indicates inverse of regularization strength which must be a positive float. Smaller values specify stronger regularization. Now let's fit our model with train set:
+
+
+
+
 ---
 
 ### Other stuff to note ###
@@ -457,7 +526,11 @@ If the boundary is clearly linear, then decision trees risk overfitting the data
 
 Euclidean distance (k-nearest neighbour)
 
+Logistic regression - training, minimizing the cost function, gradient descent
+
 ### Classification algorithms ###
+
+Subjects to explore in greater depth, over time.
 
 - Decision trees
 - Naive Bayes
@@ -466,6 +539,7 @@ Euclidean distance (k-nearest neighbour)
 - Logistic regression
 - Neural networks
 - Support Vector Machines
+
 
 
 
